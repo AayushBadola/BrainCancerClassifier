@@ -1,0 +1,9 @@
+              precision    recall  f1-score   support
+
+brain_glioma       0.91      0.94      0.92       387
+ brain_menin       0.90      0.82      0.86       411
+ brain_tumor       0.89      0.95      0.92       413
+
+    accuracy                           0.90      1211
+   macro avg       0.90      0.90      0.90      1211
+weighted avg       0.90      0.90      0.90      1211
