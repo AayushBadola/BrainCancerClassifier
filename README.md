@@ -12,6 +12,9 @@
 </p>
 
 <p align="center">
+
+<img src="assets/images/Screen Recording 2025-05-18 212812.mp4">
+  
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTBsc2lpeml3a21kYmNxYjY2N3NpcWRqb2hvYW1oYnl1bmZkeHZtaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/RqxdeXRrOiGic/giphy.gif" width="600" alt="High-Resolution Animated Neurological Imaging Sequence"/>
 </p>
 
