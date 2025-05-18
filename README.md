@@ -3,7 +3,7 @@
 [![Project Status: Active Research & Development](https://img.shields.io/badge/Status-Active%20R%26D-yellow.svg)](https://shields.io/) [![Python Standard: Version 3.9 or Higher](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://shields.io/) [![TensorFlow Core Engine: Version 2.10 or Higher](https://img.shields.io/badge/TensorFlow-2.10%2B-orange.svg)](https://www.tensorflow.org/) [![Keras API Specification Utilized](https://img.shields.io/badge/API-Keras-red.svg)](https://keras.io/) [![Intellectual Property License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjVlc2V0eXlic3VwMmdhbjF5cm5maTZuOHVsNnJvZG5tbTUxZWEzcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/brain-scan-medical/giphy.gif" width="600" alt="High-Resolution Animated Neurological Imaging Sequence"/>
+  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcG52djA3ZTZraGNldHRxMW15cXB2MjdoMjRnMHZ5dDBjZDBibjQ1NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PjJ1cLHqLEveXysGDB/giphy.gif" width="600" alt="High-Resolution Animated Neurological Imaging Sequence"/>
 </p>
 
 ## Section I: Executive Abstract and Project Mandate
