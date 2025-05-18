@@ -1,6 +1,12 @@
 # CNN Framework for Multi-Class Brain Tumor Classification from Magnetic Resonance Imaging Data
 
-[![Project Status: Active Research & Development](https://img.shields.io/badge/Status-Active%20R%26D-yellow.svg)](https://shields.io/) [![Python Standard: Version 3.9 or Higher](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://shields.io/) [![TensorFlow Core Engine: Version 2.10 or Higher](https://img.shields.io/badge/TensorFlow-2.10%2B-orange.svg)](https://www.tensorflow.org/) [![Keras API Specification Utilized](https://img.shields.io/badge/API-Keras-red.svg)](https://keras.io/) [![Intellectual Property License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+<p align="center">
+  <!-- Status & Activity -->
+
+  <img src="https://img.shields.io/badge/Status-Active%20Development-yellow" alt="Project Status: Active Development"/>
+<a href="LICENSE"><img src="https://img.shields.io/github/license/AayushBadola/BrainCancerPredictor?label=License" alt="License"/></a>
+  <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen" alt="Contributions Welcome"/>
+</p>
 
 <p align="center">
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTBsc2lpeml3a21kYmNxYjY2N3NpcWRqb2hvYW1oYnl1bmZkeHZtaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/RqxdeXRrOiGic/giphy.gif" width="600" alt="High-Resolution Animated Neurological Imaging Sequence"/>
