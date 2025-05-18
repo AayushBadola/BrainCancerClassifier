@@ -15,6 +15,70 @@
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTBsc2lpeml3a21kYmNxYjY2N3NpcWRqb2hvYW1oYnl1bmZkeHZtaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/RqxdeXRrOiGic/giphy.gif" width="600" alt="High-Resolution Animated Neurological Imaging Sequence"/>
 </p>
 
+## Section 0: How to Use (Short and conscise)
+
+
+```bash
+git clone https://github.com/AayushBadola/BrainCancerPredictor.git
+```
+<br>
+
+```bash
+cd 
+BrainCancerPredictor
+```
+
+<br>
+
+```bash
+python -m venv venv 
+```
+
+<br>
+
+```bash
+./venv/Scripts/activate
+```
+
+<br>
+
+```bash
+pip install -r requirements.txt
+```
+
+<br>
+
+```bash
+python -m brain_cancer_project.main test_data_load
+```
+
+<br>
+
+```bash
+python -m brain_cancer_project.main train
+```
+<br>
+
+```bash
+python -m brain_cancer_project.main evaluate
+```
+
+<br>
+
+**Note** Make SURE that for using custom image to predict, use the absolute path   "Absolute Path to Image" change it to "Path of your Custom Image".
+
+```bash
+python -m brain_cancer_project.main predict --image_path "Absolute Path to Image"  #Absolute path example :- C:\Users\Dell\Desktop\MRI_image.jpg
+```
+
+<br>
+
+OR You can download a MRI Image/ Have your own MRI image and use it just remember the path of the image  
+
+```bash
+python -m brain_cancer_project.main predict --image_path /path/to/your/new_test_image.jpg
+```
+
 ## Section I: Executive Abstract and Project Mandate
 
 This repository serves as a definitive archive for a sophisticated deep learning system meticulously engineered for the automated classification of Magnetic Resonance Imaging (MRI) data pertaining to human brain tumors. The paramount objective of this initiative is the development and rigorous empirical validation of a computational model capable of achieving high-precision, reliable differentiation among three clinically significant neuropathological categories: **Glioma**, a heterogeneous group of primary brain tumors originating from glial cells, characterized by their infiltrative nature and varying degrees of malignancy; **Meningioma**, generally benign, slow-growing tumors arising from the arachnoid cap cells of the meninges, the protective membranes enveloping the brain and spinal cord; and a third, flexibly defined **Tumor** category. This latter category is designed to accommodate MRI scans representing either a specific distinct pathology (such as pituitary adenomas, aligning with certain comprehensive datasets) or a broader aggregation of other neoplastic entities, with its specific characterization being contingent upon the constitution of the user-provided imaging dataset.
