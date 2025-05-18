@@ -942,7 +942,7 @@ Constructive feedback and collaborative engagement are highly welcomed.
 </p>
 
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemg2OGJ2Z2VnOG45enN1dzJmZjRyaGozbTNkNjgzMmMxNm83MjhqMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZVik7pBsviNiY/giphy.gif" width="400" alt="Animated GIF: Acknowledging Completion and Expression of Gratitude"/>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMG54MHcycWwyeDR6N2V0dXhpaWZldmU2Y3hwb25tNTBzOHJwZ3psMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Sl7OlpTiHi9pPPZKp4/giphy.gif" width="400" alt="Animated GIF: Acknowledging Completion and Expression of Gratitude"/>
 </p>
 
 
