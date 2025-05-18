@@ -21,62 +21,60 @@
 ```bash
 git clone https://github.com/AayushBadola/BrainCancerPredictor.git
 ```
-<br>
+
 
 ```bash
-cd 
-BrainCancerPredictor
+cd BrainCancerPredictor
 ```
 
-<br>
+
 
 ```bash
 python -m venv venv 
 ```
 
-<br>
+
 
 ```bash
 ./venv/Scripts/activate
 ```
 
-<br>
+
 
 ```bash
 pip install -r requirements.txt
 ```
 
-<br>
+
 
 ```bash
 python -m brain_cancer_project.main test_data_load
 ```
 
-<br>
+
 
 ```bash
 python -m brain_cancer_project.main train
 ```
-<br>
+
 
 ```bash
 python -m brain_cancer_project.main evaluate
 ```
 
-<br>
+
+
+```bash
+python -m brain_cancer_project.main predict --sample_predict
+```
+this predicts the image which is not used to train the model
+
+
 
 **Note** Make SURE that for using custom image to predict, use the absolute path   "Absolute Path to Image" change it to "Path of your Custom Image".
 
 ```bash
 python -m brain_cancer_project.main predict --image_path "Absolute Path to Image"  #Absolute path example :- C:\Users\Dell\Desktop\MRI_image.jpg
-```
-
-<br>
-
-OR You can download a MRI Image/ Have your own MRI image and use it just remember the path of the image  
-
-```bash
-python -m brain_cancer_project.main predict --image_path /path/to/your/new_test_image.jpg
 ```
 
 ## Section I: Executive Abstract and Project Mandate
