@@ -17,6 +17,13 @@
 
 ## Section 0: How to Use (Short and conscise)
 
+- Download this dataset - [Brain Cancer - MRI dataset](https://www.kaggle.com/datasets/orvile/brain-cancer-mri-dataset)
+
+- add this dataset to BrainCancerPredictor/brain_cancer_project when you have cloned the repository 
+
+- now run the following commands from `python -m brain_cancer_project.main test_data_load` while inside BrainCancerProject **NOT** in brain_cancer_project 
+
+
 
 ```bash
 git clone https://github.com/AayushBadola/BrainCancerPredictor.git
