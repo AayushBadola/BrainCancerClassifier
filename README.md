@@ -632,7 +632,7 @@ Users and contributors are encouraged to review the full license text for a comp
 The successful development and realization of this project were significantly aided by the contributions, resources, and foundational work of numerous individuals and organizations within the open-source and scientific research communities. We extend our sincere gratitude and acknowledgement to the following:
 
 *   **Dataset Curator:**
-    *   **Orvile L.:** For the meticulous compilation, annotation, and public dissemination of the **"Brain Cancer - MRI dataset"** via the Kaggle platform. This dataset ([https://www.kaggle.com/datasets/orvileL/brain-cancer-mri-dataset](https://www.kaggle.com/datasets/orvileL/brain-cancer-mri-dataset)) serves as the critical empirical foundation for this research. Access to such high-quality, labeled medical imaging data is invaluable for advancing the field of AI in healthcare.
+    *   **Orvile L.:** For the meticulous compilation, annotation, and public dissemination of the **"Brain Cancer - MRI dataset"** via the Kaggle platform. This dataset ([Brain Cancer](https://www.kaggle.com/datasets/orvile/brain-cancer-mri-dataset)) serves as the critical empirical foundation for this research. Access to such high-quality, labeled medical imaging data is invaluable for advancing the field of AI in healthcare.
 
 *   **Core Deep Learning Frameworks and Libraries:**
     *   **The TensorFlow Development Team (Google Brain):** For the creation and ongoing maintenance of the TensorFlow framework, an exceptionally powerful and versatile open-source platform for machine learning and numerical computation. Its comprehensive ecosystem has been instrumental in this project.
