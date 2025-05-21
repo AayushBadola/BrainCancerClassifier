@@ -1,21 +1,30 @@
 import os
-import tensorflow as tf
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATASET_DIR = os.path.join(BASE_DIR, 'Brain_Cancer')
-SAVED_MODELS_DIR = os.path.join(BASE_DIR, 'saved_models')
-TEMP_PREDICTION_IMAGES_DIR = os.path.join(BASE_DIR, 'temp_prediction_images')
-DEFAULT_MODEL_NAME = 'brain_cancer_classifier.keras'
-MODEL_PATH = os.path.join(SAVED_MODELS_DIR, DEFAULT_MODEL_NAME)
 
-IMG_HEIGHT = 150
-IMG_WIDTH = 150
+DATASET_DIR = os.path.join(BASE_DIR, 'brain_cancer_cleaned')
+TEST_DATA_DIR = os.path.join(BASE_DIR, 'testing_cleaned')
+
+IMG_HEIGHT = 224
+IMG_WIDTH = 224
 IMG_CHANNELS = 3
+
 BATCH_SIZE = 32
 VALIDATION_SPLIT_RATIO = 0.2
 
-EPOCHS = 25
-LEARNING_RATE = 0.001
+SAVED_MODELS_DIR = os.path.join(BASE_DIR, 'saved_models')
+TEMP_PREDICTION_IMAGES_DIR = os.path.join(BASE_DIR, 'temp_prediction_images')
+DEFAULT_MODEL_NAME = 'brain_cancer_EfficientNetB0_FineTuned.keras'
+MODEL_PATH = os.path.join(SAVED_MODELS_DIR, DEFAULT_MODEL_NAME)
+
+LEARNING_RATE_HEAD = 0.001
+LEARNING_RATE_FINETUNE = 0.00001
+
+EPOCHS_HEAD_TRAINING = 30
+EPOCHS_FINETUNING = 50
+
+NUM_LAYERS_TO_FINETUNE = 30
+
 LOSS_FUNCTION = 'categorical_crossentropy'
 METRICS = ['accuracy']
 
@@ -34,28 +43,33 @@ def set_class_info(class_names_list, num_classes_val):
     _NUM_CLASSES_FROM_LOADER = int(num_classes_val)
 
 def get_class_names():
+    global _CLASS_NAMES_FROM_LOADER, _NUM_CLASSES_FROM_LOADER
     if not _CLASS_NAMES_FROM_LOADER:
-        print("Warning: config.get_class_names() called before class names were set by data_loader.")
+        data_source_dir_for_class_inference = DATASET_DIR 
+        if not os.path.exists(data_source_dir_for_class_inference) and os.path.exists(TEST_DATA_DIR):
+            data_source_dir_for_class_inference = TEST_DATA_DIR
         try:
-            if os.path.exists(DATASET_DIR):
-                inferred_names = sorted([d for d in os.listdir(DATASET_DIR) if os.path.isdir(os.path.join(DATASET_DIR, d))])
+            if os.path.exists(data_source_dir_for_class_inference):
+                inferred_names = sorted([d for d in os.listdir(data_source_dir_for_class_inference) if os.path.isdir(os.path.join(data_source_dir_for_class_inference, d))])
                 if inferred_names:
-                    set_class_info(inferred_names, len(inferred_names))
-                    print(f"Fallback inference in config: Found classes {get_class_names()}")
+                    _CLASS_NAMES_FROM_LOADER = list(inferred_names)
+                    _NUM_CLASSES_FROM_LOADER = len(inferred_names)
                     return _CLASS_NAMES_FROM_LOADER
             return []
         except Exception as e:
-            print(f"Error during fallback class name inference in config: {e}")
             return []
     return _CLASS_NAMES_FROM_LOADER
 
 def get_num_classes():
+    global _CLASS_NAMES_FROM_LOADER, _NUM_CLASSES_FROM_LOADER
     if _NUM_CLASSES_FROM_LOADER == 0:
         get_class_names()
         if not _CLASS_NAMES_FROM_LOADER and _NUM_CLASSES_FROM_LOADER == 0:
-            print("Warning: config.get_num_classes() called before num_classes was set by data_loader and fallback failed.")
+            print("Warning: config.get_num_classes() called before num_classes was set and fallback failed.")
         return _NUM_CLASSES_FROM_LOADER
     return _NUM_CLASSES_FROM_LOADER
 
 print(f"Config loaded. Base directory: {BASE_DIR}")
-print(f"Dataset directory: {DATASET_DIR}")
+print(f"TRAINING/VALIDATION data source (DATASET_DIR): {DATASET_DIR}")
+print(f"DEDICATED TEST data source (TEST_DATA_DIR): {TEST_DATA_DIR}")
+print(f"MODEL INPUT IMAGE SIZE: {IMG_HEIGHT}x{IMG_WIDTH}")
