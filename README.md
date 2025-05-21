@@ -20,7 +20,7 @@
 
 ## Section 0: How to Use (Short and conscise)
 
-- Download this dataset - [Brain Cancer - MRI dataset](https://www.kaggle.com/datasets/orvile/brain-cancer-mri-dataset)
+- Download this dataset - [Brain Tumor MRI Dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
 
 - add this dataset to BrainCancerPredictor/brain_cancer_project when you have cloned the repository 
 
