@@ -55,7 +55,9 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-
+```bash
+python -m brain_cancer_project.preprocess_dataset
+```
 
 ```bash
 python -m brain_cancer_project.main test_data_load
@@ -237,7 +239,23 @@ brain_cancer_project/
     ├── Brain_Cancer/
     │   ├── brain_glioma/
     │   ├── brain_menin/
-    │   └── brain_tumor/
+    │   |── brain_notumor/
+    |   └── brain_pituitary/
+    ├── testing/
+    │   ├── brain_glioma/
+    │   ├── brain_menin/
+    │   |── brain_notumor/
+    |   └── brain_pituitary/
+    ├── testing_cleaned/
+    │   ├── brain_glioma/
+    │   ├── brain_menin/
+    │   |── brain_notumor/
+    |   └── brain_pituitary/
+    ├── brain_cancer_cleaned/
+    │   ├── brain_glioma/
+    │   ├── brain_menin/
+    │   |── brain_notumor/
+    |   └── brain_pituitary/
     ├── saved_models/
     ├── temp_prediction_images/
     ├── config.py
@@ -252,11 +270,6 @@ brain_cancer_project/
 ```              
 
 ---
-
-Understood. We will now proceed with Sections V, VI, and VII, maintaining the established extreme level of technical detail and comprehensiveness, with no HTML comments or emojis.
-
-This will be another very substantial block of text.
-
 
 
 ## Section V: Environment Configuration and Project Setup Protocol
@@ -327,10 +340,11 @@ Ensure that the installation process completes without errors. Network connectiv
 As per the user's explicit requirement, this project repository is intended to include the `Brain_Cancer/` dataset directory directly. After cloning and setting up the environment, verify the integrity of this dataset:
 
 1.  **Existence of `Brain_Cancer/` Directory:** Confirm that a directory named `Brain_Cancer` exists at the root level of the `BrainCancerPredictor` project.
-2.  **Class Subdirectory Structure:** Within `Brain_Cancer/`, ensure the presence of the three class-specific subdirectories:
+2.  **Class Subdirectory Structure:** Within `Brain_Cancer/`, ensure the presence of the four class-specific subdirectories:
     *   `brain_glioma/`
     *   `brain_menin/`
-    *   `brain_tumor/`
+    *   `brain_notumor/`
+    *   `brain_pituitary`
 3.  **Image File Population:** Each of these class subdirectories should be populated with the corresponding MRI image files (e.g., `.jpg`, `.png`). The `data_loader.py` script relies on this structure to automatically infer class labels.
 
 If the dataset was intended to be included but is missing, or if its structure is incorrect, the data loading phase (`test_data_load` or during `train`) will fail. If the dataset was not successfully committed or cloned, users would need to manually acquire it as per Section II and place it into the correct structure.
