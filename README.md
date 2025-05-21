@@ -91,7 +91,7 @@ python -m brain_cancer_project.main predict --image_path "Absolute Path to Image
 
 <p align="center">
   
-  <img src="assets/images/">
+  <img src="assets/videos/testing.mp4">
 
 </p>
 
