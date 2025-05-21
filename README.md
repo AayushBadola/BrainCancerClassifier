@@ -89,6 +89,12 @@ this predicts the image which is not used to train the model
 python -m brain_cancer_project.main predict --image_path "Absolute Path to Image"  #Absolute path example :- C:\Users\Dell\Desktop\MRI_image.jpg
 ```
 
+<p align="center">
+  
+  <img src="assets/images/">
+
+</p>
+
 ## Section I: Executive Abstract and Project Mandate
 
 This repository serves as a definitive archive for a sophisticated deep learning system meticulously engineered for the automated classification of Magnetic Resonance Imaging (MRI) data pertaining to human brain tumors. The paramount objective of this initiative is the development and rigorous empirical validation of a computational model capable of achieving high-precision, reliable differentiation among three clinically significant neuropathological categories: **Glioma**, a heterogeneous group of primary brain tumors originating from glial cells, characterized by their infiltrative nature and varying degrees of malignancy; **Meningioma**, generally benign, slow-growing tumors arising from the arachnoid cap cells of the meninges, the protective membranes enveloping the brain and spinal cord; and a third, flexibly defined **Tumor** category. This latter category is designed to accommodate MRI scans representing either a specific distinct pathology (such as pituitary adenomas, aligning with certain comprehensive datasets) or a broader aggregation of other neoplastic entities, with its specific characterization being contingent upon the constitution of the user-provided imaging dataset.
