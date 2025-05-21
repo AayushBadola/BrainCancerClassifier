@@ -1,5 +1,8 @@
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential, optimizers
+from tensorflow.keras import layers, Sequential, optimizers, regularizers
+from tensorflow.keras.applications import EfficientNetB0
+from tensorflow.keras.applications.efficientnet import preprocess_input as efficientnet_preprocess_input
+
 try:
     from . import config
 except ImportError:
@@ -10,56 +13,81 @@ def create_data_augmentation_layer():
         [
             layers.Input(shape=(config.IMG_HEIGHT, config.IMG_WIDTH, config.IMG_CHANNELS), name="augmentation_input"),
             layers.RandomFlip("horizontal"),
-            layers.RandomRotation(0.1),
-            layers.RandomZoom(0.1),
+            layers.RandomRotation(0.2), 
+            layers.RandomZoom(0.2),   
+            layers.RandomTranslation(height_factor=0.1, width_factor=0.1),
+            layers.RandomBrightness(factor=0.2),
+            layers.RandomContrast(factor=0.2) 
         ],
         name="data_augmentation"
     )
     return data_augmentation
 
-def create_model(num_classes_from_data, print_summary=True):
+def create_model(num_classes_from_data, 
+                 print_summary=True, 
+                 learning_rate=None, 
+                 is_fine_tuning_stage=False):
+
     if num_classes_from_data is None or not isinstance(num_classes_from_data, int) or num_classes_from_data <= 0:
         raise ValueError(f"Number of classes must be a positive integer. Received: {num_classes_from_data}")
 
-    input_layer = layers.Input(shape=(config.IMG_HEIGHT, config.IMG_WIDTH, config.IMG_CHANNELS), name="input_image")
-    x = layers.Rescaling(1./255, name="rescaling")(input_layer)
-    x = create_data_augmentation_layer()(x)
-    x = layers.Conv2D(32, (3, 3), padding='same', activation='relu', name="conv1")(x)
-    x = layers.MaxPooling2D(name="pool1")(x)
-    x = layers.Conv2D(64, (3, 3), padding='same', activation='relu', name="conv2")(x)
-    x = layers.MaxPooling2D(name="pool2")(x)
-    x = layers.Conv2D(128, (3, 3), padding='same', activation='relu', name="conv3")(x)
-    x = layers.MaxPooling2D(name="pool3")(x)
-    x = layers.Flatten(name="flatten")(x)
-    x = layers.Dense(256, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.001), name="dense1")(x)
-    x = layers.Dropout(0.5, name="dropout1")(x)
-    output_layer = layers.Dense(num_classes_from_data, activation='softmax', name="output")(x)
+    base_model = EfficientNetB0(
+        include_top=False,
+        weights='imagenet',
+        input_shape=(config.IMG_HEIGHT, config.IMG_WIDTH, config.IMG_CHANNELS),
+        pooling=None 
+    )
+    base_model_name = base_model.name 
 
-    model = tf.keras.Model(inputs=input_layer, outputs=output_layer, name="BrainCancerCNN_Functional")
-    optimizer = optimizers.Adam(learning_rate=config.LEARNING_RATE)
-    model.compile(optimizer=optimizer,
-                  loss=config.LOSS_FUNCTION,
-                  metrics=config.METRICS)
+    if is_fine_tuning_stage:
+        base_model.trainable = True
+        if config.NUM_LAYERS_TO_FINETUNE > 0 and config.NUM_LAYERS_TO_FINETUNE < len(base_model.layers):
+            for layer in base_model.layers[:-config.NUM_LAYERS_TO_FINETUNE]:
+                layer.trainable = False
+            print(f"Fine-tuning: Last {config.NUM_LAYERS_TO_FINETUNE} layers of {base_model_name} are trainable.")
+        elif config.NUM_LAYERS_TO_FINETUNE == 0 : 
+             print(f"Fine-tuning: All layers of {base_model_name} are trainable.")
+        else: 
+            print(f"Fine-tuning: All layers of {base_model_name} are trainable (NUM_LAYERS_TO_FINETUNE implies all).")
+    else: 
+        base_model.trainable = False
+        print(f"{base_model_name} base model is FROZEN for head training.")
+
+    inputs = layers.Input(shape=(config.IMG_HEIGHT, config.IMG_WIDTH, config.IMG_CHANNELS), name="input_image")
+    x = create_data_augmentation_layer()(inputs)
+    x = efficientnet_preprocess_input(x) 
+    x = base_model(x, training=is_fine_tuning_stage) 
+    x = layers.GlobalAveragePooling2D(name="global_avg_pool")(x)
+    x = layers.Dense(512, kernel_regularizer=regularizers.l2(0.001), name="dense_head_1")(x)
+    x = layers.BatchNormalization(name="bn_head_1")(x)
+    x = layers.Activation('relu', name="relu_head_1")(x)
+    x = layers.Dropout(0.5, name="dropout_head_1")(x)
+    outputs = layers.Dense(num_classes_from_data, activation='softmax', name="output")(x)
+    model = tf.keras.Model(inputs=inputs, outputs=outputs, name=f"BrainCancer_{base_model_name}_Transfer")
+
+    current_lr = learning_rate if learning_rate is not None else \
+                 (config.LEARNING_RATE_FINETUNE if is_fine_tuning_stage else config.LEARNING_RATE_HEAD)
+
+    optimizer = optimizers.Adam(learning_rate=current_lr)
+    model.compile(optimizer=optimizer, loss=config.LOSS_FUNCTION, metrics=config.METRICS)
     
     if print_summary:
+        print(f"--- Model Summary (Stage: {'Fine-tuning' if is_fine_tuning_stage else 'Head Training'}) ---")
         model.summary()
+        if is_fine_tuning_stage:
+            print(f"Number of trainable weights in base model ({base_model_name}): {len(base_model.trainable_weights)}")
 
-    print("CNN model (Functional API) created and compiled successfully.")
+    print(f"Transfer learning model ({base_model_name}) created. Stage: {'Fine-tuning' if is_fine_tuning_stage else 'Head Training'}.")
     return model
 
 if __name__ == '__main__':
-    print("--- Testing model_builder.py ---")
+    print("--- Testing model_builder.py (Transfer Learning) ---")
     try:
         num_c_test = config.get_num_classes() 
-        if num_c_test == 0:
-            print("Warning: Number of classes is 0 or could not be determined from config/dataset for model_builder test. Using default of 3.")
-            num_c_test = 3
-        test_model = create_model(num_classes_from_data=num_c_test)
-        if test_model:
-            print("Model built successfully for testing.")
-        else:
-            print("Failed to build model for testing.")
+        if num_c_test == 0: num_c_test = 4
+        print("\nCreating model for HEAD TRAINING (base frozen):")
+        create_model(num_classes_from_data=num_c_test, is_fine_tuning_stage=False)
+        print("\nCreating model for FINE-TUNING (some base layers unfrozen):")
+        create_model(num_classes_from_data=num_c_test, is_fine_tuning_stage=True)
     except Exception as e:
-        print(f"Error during model_builder.py test: {e}")
-        import traceback
-        traceback.print_exc()
+        print(f"Error: {e}"); import traceback; traceback.print_exc()
