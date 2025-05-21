@@ -89,11 +89,6 @@ this predicts the image which is not used to train the model
 python -m brain_cancer_project.main predict --image_path "Absolute Path to Image"  #Absolute path example :- C:\Users\Dell\Desktop\MRI_image.jpg
 ```
 
-<p align="center">
-  
-  <img src="assets/videos/testing.mp4">
-
-</p>
 
 ## Section I: Executive Abstract and Project Mandate
 
