@@ -6,7 +6,7 @@
   <a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/TensorFlow-2.10%2B-FF6F00?logo=tensorflow" alt="Framework: TensorFlow 2.10+"/></a>
   <a href="https://keras.io/"><img src="https://img.shields.io/badge/Keras%20API-Utilized-D00010?logo=keras" alt="Keras API Utilized"/></a>
   <img src="https://img.shields.io/badge/IDE-VSCode-007ACC?logo=visualstudiocode" alt="IDE: VSCode"/>
-  <img src="https://img.shields.io/badge/Status-Active%20Development-yellow" alt="Project Status: Completed"/>
+  <img src="https://img.shields.io/badge/Status%20Working-yellow" alt="Project Status: Completed"/>
 <a href="LICENSE"><img src="https://img.shields.io/github/license/AayushBadola/BrainCancerPredictor?label=License" alt="License"/></a>
   <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen" alt="Contributions Welcome"/>
 </p>
